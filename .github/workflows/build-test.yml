@@ -14,6 +14,9 @@ jobs:
   build-and-test:
     name: Build and Test
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: test
+      LOG_LEVEL: debug
     
     strategy:
       matrix:
@@ -93,8 +96,10 @@ jobs:
     if: always()
     
     steps:
-      - name: Print test results
+     - name: Print environment
         run: |
           echo "🎯 Test Run Summary"
-          echo "==================="
+          echo "=================="
           echo "✅ All tests completed"
+          echo "Environment: ${{ env.NODE_ENV }}"
+          echo "Log Level: ${{ env.LOG_LEVEL }}"
